@@ -1,0 +1,58 @@
+#include <iostream>
+#include <cmath>
+using namespace std;
+
+// no 4
+// void hitungRerata(){
+//   double x,N,juml=0;
+//   cin>>N;
+//   for(int i=0;i<N;i++){
+//     cin>>x;
+//     juml = juml + x;
+//   }
+//   cout << juml/N;
+// }
+
+// int main(){
+//     hitungRerata();
+//     return 0;
+// }
+
+//  no8
+// int main(){
+//     double suhu=100;
+//     konversi (suhu,'c','k');
+//     cout << suhu;
+// }
+//no2
+// void findmax(){
+//     int N,data,max=0;
+//     cin>>N;
+
+//     for(int i=0; i<N; i++){
+//         cin >> data;
+//         if(i==0 || data>max){
+//             max = data;
+//         }
+//     }
+//     cout << max;
+// }
+
+// int main(){
+//     findmax();
+//     return 0;
+// }
+
+//NO 6
+// double jarak(double x1,double y1, double x2, double y2){
+//     double D;
+//     D = pow((pow(x2-x1,2))+(pow(y2-y1,2)),0.5);
+//     return D;
+// }
+// int main(){
+//     jarak();
+//     return 0;
+// }
+
+// no 5
+
