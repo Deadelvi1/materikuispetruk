@@ -1,4 +1,4 @@
-///function
+///FUNCTION
 #include <iostream>
 #include <cmath>
 using namespace std;
@@ -31,7 +31,10 @@ int main(){
 
 
 
-///
+
+
+
+///ARRAY DAN POINTER
 #include <iostream>
 using namespace std;
 
@@ -127,12 +130,40 @@ int main() {
 
 
 
-///i/o 
+
+
+///I/O 
+#include <iostream>
+#include <fstream>
+using namespace std;
+
+int main(){
+    // ofstream outFile("example.txt");
+    // outFile <<"Nama saya dea";
+    // outFile.close();
+    // string teks;
+    // ifstream readFile("example.txt");
+    // while(getline(readFile, teks)){
+    //     cout << teks;
+    // }readFile.close();
+
+    string teks[4];
+    for(int i = 0; i<4;i++){
+        cin >> teks[i];
+    }
+    ofstream  writeFile("barang.txt");
+
+    for(int i = 0; i < 4; i++){
+        writeFile <<teks[i]<<endl;
+    }
+}// ofstream (menulis) ifstream(membaca)
 
 
 
 
-///cstring
+
+
+///CSTRING
 #include <iostream>
 #include <cstring>
 using namespace std;
