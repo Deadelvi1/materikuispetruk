@@ -284,3 +284,75 @@ int main(){
     return 0;
 }
 
+
+///CLASS AND OBJECT
+//Dea Delvinata Riyan
+//2317051027_D
+#include <iostream>
+using namespace std;
+
+class Operasi_matematika{
+    private:
+        float a1, a2, hasil;
+        char opr;
+    public:
+        void operasi (char opr){
+            if(opr == '+') hasil = a1 + a2;
+            else if(opr == '-') hasil = a1 - a2;
+            else if(opr == '*') hasil = a1 * a2;
+            else if(opr == '/') hasil = a1 / a2;
+            else{
+                cout << "Operasi Tidak Valid!" << endl;
+                    hasil = 0;
+            }
+        }
+
+        Operasi_matematika(float a1, float a2, char opr){
+            this->a1 = a1;
+            this->a2 = a2;
+            this->opr = opr;
+            operasi(opr);
+            cout << "hasil : "<< hasil << endl;
+        }
+
+        void setA1(float a1){
+            this-> a1 = a1;
+        }
+        void setA2(float a2){
+            this-> a2 = a2;
+        }
+        void setOpr(char opr){
+            this-> opr = opr;
+            operasi(opr);
+        }
+        float getA1(){
+            return a1;
+        }
+        float getA2(){
+            return a2;
+        }
+        float getHasil(){
+            return hasil;
+        }
+        char getOpr(){
+            return opr;
+        }
+};
+
+int main(){
+    float a1, a2;
+    char opr;
+
+    cout << "Masukan angka ke-1 : "; 
+    cin >> a1;
+    cout << "Masukan angka ke-2 : "; 
+    cin >> a2;
+    cout << "Masukan Operator + - * / : "; 
+    cin >> opr;
+
+    Operasi_matematika obj(a1, a2, opr);
+    
+    return 0;
+}
+   
+
