@@ -1,0 +1,126 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+bool isOperator(char op);
+bool isOperator(string op);
+int priorityOp(string op);
+vector<string> convertStringToInfix(const string& str);
+vector<string> infixToPostfix(vector<string> str);
+
+int main() { 
+    string str;
+    getline(cin, str);
+    vector <string> stck;
+    stck = convertStringToInfix(str);
+    stck = infixToPostfix(stck);
+    for(auto i : stck){
+        cout << i << " ";
+    }
+    return 0;
+}
+
+//mengecek apakah operator versir char
+bool isOperator(char op) {
+    return (op == '*' || op == '/' || op == '+' || op == '-' || op == '%' || op == '(' || op == ')');
+}
+
+//mengecek apakah operator versir string
+bool isOperator(string op) {
+    return (op == "*" || op == "/" || op == "+" || op == "-" || op == "%" || op == "(" || op == ")");
+}
+
+//menentukan prioritas operator
+int priorityOp(string op) {
+    if (op == "+" || op == "-") return 1;
+    if (op == "*" || op == "/") return 2;
+    return 0;
+}
+
+// mengkonversi string ke infix
+vector<string> convertStringToInfix(const string& str){
+    vector <string> stck;
+    for(size_t i = 0; i < str.size(); i++){
+        string temp = "";
+        if(str[i] == ' '){
+            continue;
+        }else if(str[0] == '-' && i == 0){
+            temp = "-";
+            i++;
+            while(i < str.size() && !isOperator(str[i]) && str[i] != ' '){
+                temp = temp + str[i];
+                i++;
+            }
+            stck.push_back(temp);
+            i--;
+        }
+        else if(!isOperator(str[i])){
+            while(i < str.size() && !isOperator(str[i]) && str[i] != ' '){
+                temp = temp + str[i];
+                i++;
+            }
+            stck.push_back(temp);
+            i--;
+        }else{
+            temp = str[i];
+            if(temp == "-" && (i == 0 || isOperator(str[i-1]) || str[i-1] == ' ' || str[i-1] == '(')) {
+                if (i + 1 < str.size() && (isdigit(str[i+1]) || str[i+1] == '(')) {
+                    stck.push_back("-1");
+                    stck.push_back("*");
+                } else {
+                    stck.push_back(temp);
+                }
+            } else {
+                stck.push_back(temp);
+            }
+        }
+    }   
+
+    for(size_t i = 0; i < stck.size(); i++){
+        if(stck[i] == "-" && isOperator(stck[i-1]) && isOperator(stck[i+1])){
+            stck[i] = "-1";
+            stck.insert(stck.begin() + 1 + i,"*");
+            i++;
+        }
+        else if(stck[0] == "-" && isOperator(stck[i+1]) && i == 0){
+            stck[i] = "-1";
+            stck.insert(stck.begin() + 1 + i,"*");
+            i++;
+        }
+    }
+    return stck;
+}
+
+//konversi ekspresi infix ke postfix
+vector<string> infixToPostfix(vector<string> str) {
+    stack<string> stk;
+    vector<string> postfix;
+
+    for (auto i : str) {
+        if (!isOperator(i)) {
+            postfix.push_back(i);
+        } else if (i == "(") {
+            stk.push(i);
+        } else if (i == ")") {
+            while (!stk.empty() && stk.top() != "(") {
+                postfix.push_back(stk.top());
+                stk.pop();
+            }
+            stk.pop(); 
+        } else if (isOperator(i)) {
+            if (stk.empty() || stk.top() == "(") {
+                stk.push(i);
+            } else {
+                while (!stk.empty() && stk.top() != "(" && priorityOp(i) <= priorityOp(stk.top())) {
+                    postfix.push_back(stk.top());
+                    stk.pop();
+                }
+                stk.push(i);
+            }
+        }
+    }
+    while (!stk.empty()) {
+        postfix.push_back(stk.top());
+        stk.pop();
+    }
+    return postfix;
+}
