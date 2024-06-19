@@ -124,3 +124,36 @@ int main(){
     d.cetakDaftar();
     return 0;
 }
+
+
+
+
+
+
+//VECTOR
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int main(){
+    vector<char>huruf = {'d','e','a'};
+    huruf.front()='h';
+    //cout<<huruf.font();
+    huruf.back()='h';
+    cout<<huruf.back();
+    for(vector<char>::iterator it = huruf.begin();it != huruf.end();it++){
+        cout<<*it << " ";
+    }
+    cout<<huruf.at(2);
+    huruf.push_back('o');
+    huruf.pop_back();
+    cout<<huruf.size();
+    cout<<huruf.empty();
+    char a[]={'d','e','a'};
+    int len = sizeof(a)/sizeof(a[0]);
+    huruf.assign(a,a+len);
+    huruf.insert(huruf.begin()+2,'g');
+    huruf.erase(huruf.begin(),huruf.begin()+3);
+    huruf.clear();
+    cout<<huruf.empty();
+}
