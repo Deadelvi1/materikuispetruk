@@ -1,0 +1,179 @@
+// Nama : Dea Delvinata Riyan
+// NPM_Kelas : 2317051027_D
+
+#include <iostream>
+using namespace std;
+
+//Soal Nomor 1
+#define MAX_SIZE 6
+class Stack{
+    private:
+    string stack[MAX_SIZE][3];
+    int top = -1;
+
+    public:
+    bool isFull(){return top == MAX_SIZE - 1;}
+    bool isEmpty(){return top == -1;}
+
+    void push(string nama, string npm, string nilai){
+        if (isFull()){
+            cout << "Stack penuh nilai tidak dapat dimasukan" << endl;
+        }else {
+            top++;
+            stack[top][0] = nama;
+            stack[top][1] = npm;
+            stack[top][2] = nilai;
+            }
+    }
+
+    void pop(){
+        if (isEmpty()){
+            cout << "Eror : Stack sudah kosong tidak ada nilai yang dapat dihapus" << endl;
+        }else {
+            top--;
+            cout << "Stack telah dihapus" << endl;
+        }
+    }
+
+    void clear(){
+        while(top != -1){
+            top--;
+        }
+    }
+
+    void display(){
+        if (top == -1){
+            cout << "Nilai kosong" << endl;
+        }else{
+            for(int i = 0; i <= top; i++){
+                cout << "Nama : " << stack[i][0] << ", NPM : " << stack[i][1] << " , Nilai : " << stack[i][2] << endl;
+            }
+        }
+    }
+};
+
+int main(){
+    string nama, npm, nilai;
+    Stack s;
+    char pilihan;
+    cout << "Silahkan Pilih Menu : "<<endl;
+    cout << "1. Tambahkan Nilai "<<endl;
+    cout << "2. Hapus Stack Nilai "<<endl;
+    cout << "3. Tampilkan Nilai "<<endl;
+    cout << "4. Hapus semua nilai "<<endl;
+    cout << "X. exit "<<endl;
+    while (1){
+        cout << "Masukan opsi : "; cin >> pilihan;
+        if(pilihan == '1'){
+            cout << "Masukan Nama Anda : "; cin >> nama;
+            cout << "Masukan NPM Anda : "; cin >> npm;
+            cout << "Masukan Nilai Anda : "; cin >> nilai;
+            s.push(nama, npm, nilai);
+        }
+        else if (pilihan == '2'){
+            s.pop();
+        }
+        else if (pilihan == '3'){
+            cout << "Berikut adalah daftar Saat ini : " << endl;;
+            s.display();
+        }
+        else if (pilihan == '4'){
+            s.clear();
+            cout << "Stack Telah Kosong" << endl;
+        }
+        else if(toupper(pilihan) == 'X'){
+            break;
+        }
+        else cout << "Silahkan Ulang. Masukan pilihan yang benar" <<endl;
+    }
+    return 0;
+}
+
+
+
+
+// //Soal Nomor 2
+// #define MAX_SIZE 6
+// class Queue{
+//     private:
+//     string antrian[MAX_SIZE][3];
+//     int front = -1;
+//     int rear = -1;
+
+//     public:
+//     bool isFull(){return (rear == MAX_SIZE -1 ? true : false);}
+//     bool isEmpty(){return (rear == -1 ? true : false);}
+//     void clear(){front = rear = -1;}
+
+//     void enqueue(string nama, string npm, string nilai){
+//         if(front == -1 && rear == -1) front = rear = 0;
+//         else if (isFull()) {cout << "Antrian Sudah Penuh" << endl; return;}
+//         else rear++;
+//         antrian[rear][0] = nama;
+//         antrian[rear][1] = npm;
+//         antrian[rear][2] = nilai;
+//     }
+//     void dequeue(){
+//         if(isEmpty()) cout << "Eror : Antrian Kosong" << endl;
+//         else{
+//             for(int i = front; i < rear; i++){
+//                 antrian[i][0] = antrian[i+1][0];
+//                 antrian[i][1] = antrian[i+1][1];
+//                 antrian[i][2] = antrian[i+1][2];
+//             }
+//             rear--;
+//             if(rear == -1) front = -1;
+//             cout << "Kursus dibatalkan!" << endl;
+//         }
+//     }
+//     void display() {
+//         if (isEmpty()) {
+//             cout << "Antrian Kosong" << endl;
+//             return;
+//         }
+
+//         cout << "Daftar Antrian:" << endl;
+//         for (int i = front; i <= rear; i++) {
+//             cout << "Antrian : " << i + 1 << ", Nama: " << antrian[i][0] << ", NPM: " << antrian[i][1] << ", Kursus : " << antrian[i][2] << endl;
+//         }
+//     }
+
+// };
+
+// int main(){
+//     Queue q;
+//     char pilihan;
+//     string nama, npm, kursus;
+//     cout << "Silahkan Pilih Menu:"<<endl;
+//     cout << "1. Daftar Kursus"<<endl;
+//     cout << "2. Membatalkan Kursus"<<endl;
+//     cout << "3. Menampilkan Antrian Kursus"<<endl;
+//     cout << "4. Hapus semua Antrian"<<endl;
+//     cout << "X. exit "<<endl;
+//     while (1){
+//         cout << "Masukan Opsi : "; cin >> pilihan;
+//         if(pilihan == '1'){
+//             cout << "Masukan Nama Anda : ";cin >> nama;
+//             cout << "Masukan NPM Anda : ";cin >> npm;
+//             cout << "Masukan Kursus Yang Ingin diambil : ";cin >> kursus;
+//             q.enqueue(nama, npm, kursus);
+//         }
+//         else if (pilihan == '2'){
+//             q.dequeue();
+//         }
+//         else if (pilihan == '3'){
+//             cout << "Berikut Antrian Kursus :" << endl;
+//             q.display();
+
+//         }
+//         else if (pilihan == '4'){
+//             q.clear();
+//             cout << "Stack Sudah Kosong" << endl;
+//         }
+//         else if(toupper(pilihan) == 'X'){
+//             break;
+//         }
+//         else cout << "Silahkan Ulang. Masukan pilihan yang benar!" <<endl;
+//     }
+//     return 0;
+// }
