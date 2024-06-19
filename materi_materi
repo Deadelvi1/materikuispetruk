@@ -356,3 +356,118 @@ int main(){
 }
    
 
+
+
+
+
+
+// STL
+//Dea Delvinata Riyan
+//2317051027_D
+#include <iostream>
+#include <ctime>
+using namespace std;
+
+template <typename V>
+class Usia{
+    private :
+    V tahunLahir, bulanLahir, hariLahir;
+    V tahunSkrg, bulanSkrg, hariSkrg;
+    V tahunUsia, bulanUsia, hariUsia;
+    bool Kabisat;
+
+    public :
+    void tglSekarang(){
+        time_t now = time(0);
+        tm *localTime = localtime(&now);
+        tahunSkrg = 1900 + localTime->tm_year;
+        bulanSkrg = localTime->tm_mon + 1;
+        hariSkrg = localTime->tm_mday;
+        }
+
+    Usia (V tahunLahir, V bulanLahir, V hariLahir){
+        this-> tahunLahir = tahunLahir;
+        this-> bulanLahir = bulanLahir;
+        this-> hariLahir = hariLahir;
+        tglSekarang();
+    }
+
+    void setTahun(V tahunLahir){
+        this-> tahunLahir = tahunLahir;
+    }
+    void setBulan(V bulanLahir){
+        this-> bulanLahir = bulanLahir;
+    }
+    void setHari(V hariLahir){
+        this-> hariLahir = hariLahir;
+    }
+
+    V getTahun(){return tahunLahir;}
+    int getBulan(){return bulanLahir;}
+    int getHari(){return hariLahir;}
+
+    void HitungUsia(){
+        tahunUsia = tahunSkrg - tahunLahir;
+        bulanUsia = bulanSkrg - bulanLahir;
+        hariUsia = hariSkrg - hariLahir;
+
+        if (hariUsia < 0) {
+            bulanUsia--;
+            hariUsia += jmlHari(tahunSkrg, bulanSkrg);
+        }
+        if (bulanUsia < 0) {
+            tahunUsia--;
+            bulanUsia += 12;
+        }
+
+        cout << "Usia sekarang adalah " << tahunUsia << " tahun " << bulanUsia << " bulan " << hariUsia << " hari" << endl;
+    }
+
+     void menghitungKabisat(V tahun) {
+        if (tahun % 4 == 0) {
+            if (tahun % 100 == 0) {
+                if (tahun % 400 == 0) {
+                    this->Kabisat = true;
+                } else {
+                    this->Kabisat = false;
+                }
+            } else {
+                this->Kabisat = true;
+            }
+        } else {
+            this->Kabisat = false;
+        }
+
+        if (Kabisat) {
+            cout << tahun << " adalah kabisat" << endl;
+        } else {
+            cout << tahun << " bukan kabisat" << endl;
+        }
+    }
+    
+    int jmlHari(V tahun, V bulan) {
+        if (bulan == 2) {
+            if (Kabisat) {
+                return 29;
+            } else {
+                return 28;
+            }
+        } else if (bulan == 4 || bulan == 6 || bulan == 9 || bulan == 11) {
+            return 30;
+        } else {
+            return 31;
+        }
+    }
+    
+};
+
+
+int main(){
+    int tahun,bulan, hari;
+    cout << "Maukan tahun,bulan, dan tanggal lahir : ";cin >> tahun >>bulan>>hari;
+    Usia<int>ak(tahun,bulan,hari);
+    ak.HitungUsia();
+    ak.menghitungKabisat(tahun);
+    cout<<"jumlah harinya " <<ak.jmlHari(tahun,bulan)<<" hari "<<"\n";
+    return 0;
+}
