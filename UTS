@@ -387,7 +387,7 @@ class Point3D{
   int x,y,z;
   public :
   Point3D(){x=0; y=0;z=o;}
-  Point3D (int x, int y, intz) : x(x),y(y),z(z){
+  Point3D (int x, int y, intz) : x(x),y(y),z(z){}
   Point3D(Point3D &P){x =P.x;y=P.y;z=P.z;}
   void print(){cout <<x<<" "<<y<< " " <<z <<endl;}
   double distance(Point3D &P){
@@ -416,7 +416,7 @@ class Point3D{
   int x,y,z;
   public :
   Point3D(){x=0; y=0;z=o;}
-  Point3D (int x, int y, intz) : x(x),y(y),z(z){
+  Point3D (int x, int y, intz) : x(x),y(y),z(z){}
   Point3D(Point3D &P){x =P.x;y=P.y;z=P.z;}
   void print(){cout <<x<<" "<<y<< " " <<z <<endl;}
   double distance(Point3D &P){
