@@ -445,3 +445,24 @@ print, fungsi ini akan mencetak nilai x, y dan z yang dipisahkan dengan spasi
 distance, fungsi ini memiliki 1 parameter yaitu objek Point3D. Fungsi ini akan mengembalikan nilai jarak antar titik. (Petunjuk: perhatikan, amati dan pelajari konstruktor duplikasi objek untuk membuat fungsi ini)
 angle, Anggap saja titik-titik pada elemen data merupakan  sebuah vektor. fungsi ini memiliki 1 parameter yaitu objek Point3D. Fungsi ini akan mengembalikan nilai sudut diantara 2 vekor (sudut dalam derajat).
 
+class Point3D{
+  private :
+  int x,y,z;
+  public :
+  Point3D(){x=0; y=0;z=o;}
+  Point3D (int x, int y, intz) : x(x),y(y),z(z){}
+  Point3D(Point3D &P){x =P.x;y=P.y;z=P.z;}
+  void print(){cout <<x<<" "<<y<< " " <<z <<endl;}
+  double distance(Point3D &P){
+    double a = abs(x-P.x);
+    double b = abs(y-P.y);
+    double c = abs(z-P.z);
+    return pow((a*a+b*b+c*c),0.5);
+  }
+  int dotProduct(Point3D &P){return x * P.x + y * P.y +z *P.z;}
+  double length(){return sqrt(x*x+y*y+z*z);}
+  double angle(Point3D &P){
+        double result = acos(dotProduct(p)/(length()*p.length()))*180.0/ M_PI;
+        return result;
+  }
+};
