@@ -1,0 +1,211 @@
+#include <iostream>
+#include <cmath>
+using namespace std;
+
+//1. buatkan class Trapezoid atributnya public class template base1, base2 
+// Trapezoid<int>tp;
+//int a = tp.base1;
+//UBAH JADI PRIVATE
+//methode semua jadi public 
+//construktor default nilainya 10 semua
+//construktor base1,base2,height
+//setter getter
+//method
+
+
+//1
+// template<class V>
+// class Trapezoid{
+//     public:
+//     V base1; 
+//     V base2; 
+//     V height;
+//     Trapezoid(){
+//         this->base1= base1;
+//         this->base2=base2;
+//         this->height =height;
+//     }
+// };
+// int main(){
+//     Trapezoid <int> tp;
+//     int a = tp.base1 = 10;
+//     int b = tp.base2 = 10;
+//     int c = tp.height = 10;
+//     cout <<a <<"\n"<<b<<"\n"<<c;
+// }
+
+
+
+//2
+// template<class T>
+// class Trapezoid{
+//     private:
+//     T base1; 
+//     T base2; 
+//     T height;
+
+//     public:
+//      Trapezoid(){ //KONSTRAKTOR DEFAULT
+//         base1= 10;
+//         base2= 10;
+//         height = 10;
+//     }
+
+//     Trapezoid(T base1, T base2, T height){ //KONSTRUKTOR DGN PARAMETER
+//         this->base1= base1;
+//         this->base2=base2;
+//         this->height =height;
+//     }
+
+//     T setBase1(T base1){
+//         this-> base1 = base1;
+//     }
+//     T setBase2(T base2){
+//         this-> base2 = base2;
+//     }
+//     T setHeight(T height){
+//         this-> height = height;
+//     }
+
+//     T getBase1(){return base1;}
+//     T getBase2(){return base2;}
+//     T getHeight(){return height;}
+// };
+// int main(){
+//     Trapezoid <int> tp; //OBJ
+//     tp.setBase1 (10);
+//     tp.setBase2 (10);
+//     tp.setHeight (10);
+//     int a = tp.getBase1 ();
+//     int b = tp.getBase2 ();
+//     int c = tp.getHeight ();
+//     cout <<a <<"\n"<<b<<"\n"<<c;
+//     return 0;
+// }
+
+
+
+
+// //3
+// template<class V>
+// class Trapezoid{
+//     private:
+//     V base1; 
+//     V base2; 
+//     V height;
+
+//     public:
+//      Trapezoid(){ //KONSTRAKTOR DEFAULT
+//         base1= 10;
+//         base2= 10;
+//         height = 10;
+//     }
+
+//     Trapezoid(V base1, V base2, V height){ //KONSTRUKTOR DGN PARAMETER
+//         this->base1= base1;
+//         this->base2=base2;
+//         this->height =height;
+//     }
+
+//     V setBase1(V base1){
+//         this-> base1 = base1;
+//     }
+//     V setBase2(V base2){
+//         this-> base2 = base2;
+//     }
+//     V setHeight(V height){
+//         this-> height = height;
+//     }
+
+//     V getBase1(){return base1;}
+//     V getBase2(){return base2;}
+//     V getHeight(){return height;}
+
+//     V calculateArea(){
+//         return((base1 +base2)*height*0.5);
+//     }
+
+//     V calculatePerimeter(){
+//         return (sqrt(pow(((base2-base1)* 0.5),2)+pow(height,2))*2)+base1+base2;
+//     }
+
+// };
+// int main(){
+//     Trapezoid <int> tp; //OBJ
+//     tp.setBase1 (10);
+//     tp.setBase2 (10);
+//     tp.setHeight (10);
+//     int a = tp.getBase1 ();
+//     int b = tp.getBase2 ();
+//     int c = tp.getHeight ();
+//     cout <<a <<"\n"<<b<<"\n"<<c<<"\n";
+//     int area = tp.calculateArea();
+//     int perimeter = tp.calculatePerimeter();
+//     cout << "Area : " <<area<<endl;
+//     cout << "Perimeter : "<< perimeter;
+//     return 0;
+// }
+
+
+
+
+
+
+// //4
+template<class T>
+class Kite{
+    private:
+    T diagonal1;
+    T diagonal2;
+    public:
+    Kite(){
+        diagonal1 = 10;
+        diagonal2 = 10;
+
+    }
+    Kite(T diagonal1, T diagonal2){
+        this->diagonal1= diagonal1;
+        this->diagonal2=diagonal2;
+
+    }
+
+    T setDiagonal1(T diagonal1){
+        this-> diagonal1 = diagonal1;
+    }
+    T setDiagonal2(T diagonal2){
+        this-> diagonal2 = diagonal2;
+    }
+
+    T getDiagonal1(){return diagonal1;}
+    T getDiagonal2(){return diagonal2;}
+
+    T calculateArea(){
+        return(diagonal1*diagonal2)/2;
+    }
+    T calculatePerimeter(){
+        T atas = diagonal2/2;
+        T bawah = diagonal1 - atas;
+        T sisiatas = sqrt(pow(atas,2)+pow(atas,2));
+        T sisibawah = sqrt(pow(atas,2)+pow(bawah,2));
+        return (sisiatas*2)+(sisibawah*2);
+    }
+
+};
+
+int main(){
+    Kite<double>tp;
+    tp.setDiagonal1 (10);
+    tp.setDiagonal2 (10);
+    double a = tp.getDiagonal1 ();
+    double b = tp.getDiagonal2 ();
+    cout <<"Diagonal 1: "<< a <<"\n"<<"Diagonal 2: "<<b<<"\n";
+    double area = tp.calculateArea();
+    double perimeter = tp.calculatePerimeter();
+    cout << "Area : " <<area<<endl;
+    cout << "Perimeter : "<< perimeter;
+    return 0;
+}
+
+
+
+
