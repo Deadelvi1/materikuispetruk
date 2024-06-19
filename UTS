@@ -1,0 +1,447 @@
+1. Buat fungsi void dengan nama findMax tanpa parameter, fungsi membaca input dari keyboard berupa integer N, dan N data.  Lalu fungsi akan mencetak nilai terbesar dari data yang diinputkan.
+Format Input
+Baris pertama berupa integer N
+N Baris berikutnya merupakan data dengan tipe integer
+Format Output
+Output berupa nilai terbesar data yang diinputkan
+
+void findMax(){
+    int N;
+    int data;
+    int max = 0;
+    cin>>N;
+    for(int i = 0; i<N ; i++){
+        cin>>data;
+        if(i == 0 || data>max){
+            max = data;
+        }
+    }
+    cout<<max;
+}
+
+
+
+
+2. Dengan menggunakan konsep trapezoidal rule, buat fungsi dengan nama integrate, dengan 3 parameter integer k, a, dan b. Fungsi ini akan mengembalikan nilai integral dari a s.d b untuk f(x) = xk
+Prototype fungsi:
+double integrate(int, double, double);
+Contoh pemanggilan fungsi:
+cout <<integrate(3,2,4); 
+Output:
+ 60 
+Penjelasan:
+Dalam penggunaan trapezoidal rule, pilih n=1000 agar mendekati hasil eksaknya.
+
+#include <iostream>
+#include <cmath>
+using namespace std;
+
+double integrate(double k, double a, double b){
+    int n = 1000;
+    double y, F, h, hitung;
+    h = (b-a)/n;
+    hitung = h*(pow(b,k)+pow(a,k))/2;
+    for(int i=1; i<n; i++){
+        y = a+i*h;
+        F = pow(y,k);
+        hitung = hitung + h*F;
+    }
+    return hitung;
+}
+
+
+
+
+
+
+3. Temukan Tiga Bilangan Ganjil Berturut-turut dalam Array
+Deskripsi:
+Diberikan sebuah array yang berisi bilangan, cari tahu apakah dalam array tersebut terdapat tiga bilangan ganjil yang berurutan.
+Parameter:
+int arr[]: array yang berisi bilangan.
+int N: jumlah elemen dalam array.
+Batasan:
+1 ≤ N ≤ 10^5
+0 ≤ Elemen array ≤ 10^6
+Return Fungsi:
+Fungsi harus mengembalikan nilai boolean:
+true jika terdapat tiga bilangan ganjil berturut-turut dalam array.
+false jika tidak ada tiga bilangan ganjil berturut-turut dalam array.
+Contoh:
+Diberikan arr = [2, 4, 1, 3, 5, 1, 3, 6] Return: true karena terdapat tiga bilangan ganjil berturut-turut (1, 3, 5).
+Diberikan arr = [2, 4, 2, 2, 4, 6, 8] Return: false karena tidak terdapat tiga bilangan ganjil berturut-turut.
+Prototipe fungsi: bool check(int arr[], int );
+For example:
+
+bool check(int arr[], int n){
+    for(int i=0; i<n-2;i++){
+        if(arr[i]%2 ==1 && arr[i+1]%2 == 1 && arr[i+2]%2 ==1){
+            return true;
+        }
+    }
+    return false;
+}
+
+
+
+
+
+4.Temukan Jumlah Pasangan dengan Jumlah Genap
+Deskripsi:
+Diberikan sebuah array yang berisi bilangan bulat, tulislah sebuah fungsi dengan prototipe: int countPairs(int [], int) untuk menemukan jumlah semua pasangan yang jumlahnya genap.
+Parameter:
+int arr[]: array yang berisi bilangan bulat.
+int N: jumlah elemen dalam array.
+Batasan:
+1 ≤ N ≤ 10^5
+-10^6 ≤ Elemen array ≤ 10^6
+Return Fungsi:
+Fungsi harus mengembalikan bilangan bulat yang merupakan jumlah pasangan dengan jumlah genap dalam array.
+Contoh:
+Diberikan Input: [1, 2, 3, 4] Jumlah pasangan genap: 2 Catatan: Pasangan yang memiliki jumlah genap adalah (1, 3) dan (2, 4).
+Diberikan Input: [6, 7, 1, 3, 2, 5, 4] Jumlah pasangan genap: 9
+
+int countPairs(int arr[], int n){
+    int count = 0;
+    for(int i = 0; i<n;i++){
+        for(int k = i+1;k<n;k++){
+            int temp = arr[i]+arr[k];
+            if(temp %2 ==0){
+                count++;
+            }
+        }
+    }
+    return count;
+}
+
+
+
+
+
+
+5. Jumlah Semua Elemen Unik dalam Array
+Deskripsi:
+Diberikan sebuah array yang berisi bilangan bulat yang mungkin juga mengandung duplikat. Tulislah sebuah fungsi dengan prototipe: long sumOfDistinct(int [], int) untuk menemukan jumlah semua elemen unik dalam array tersebut. Masalah ini juga dikenal sebagai menemukan jumlah semua elemen berbeda dalam array.
+Parameter:
+int arr[]: array yang berisi bilangan bulat.
+int N: jumlah elemen dalam array.
+Batasan:
+1 ≤ N ≤ 10^5
+-10^10 ≤ Elemen array ≤ 10^10
+Return Fungsi:
+Fungsi harus mengembalikan bilangan bulat yang merupakan jumlah dari semua elemen unik dalam array.
+Contoh:
+Diberikan arrA = [1, 6, 4, 3, 2, 2, 3, 8, 1] Output harusnya: 24 (Elemen unik adalah: 1, 6, 4, 3, 2, 8)
+Diberikan arrA = [1, 1, 3, 2, 2, 3] Output harusnya: 6 (Elemen unik adalah: 1, 2, 3)
+
+long sumOfDistinct(int arr[], int n){
+    for(int i = 0; i<n;i++){
+         for(int j=0;j<n;j++){
+             if( arr[i] <= arr[j]) swap(arr[i],arr[j]);
+         }
+    }
+    long hasil = arr[0];
+    int temp = arr[0];
+    for(int i=0;i<n;i++){
+        if(arr[i]!=temp){
+            hasil+=arr[i];
+            temp = arr[i];
+        }
+    }
+    return hasil;
+}
+
+
+
+
+
+
+
+6.Temukan Tiga Elemen Terbesar dalam Array
+Deskripsi:
+Diberikan sebuah array yang berisi bilangan bulat, tulislah sebuah algoritma untuk menemukan tiga elemen terbesar dalam array tersebut.
+Parameter:
+int arr[]: array yang berisi bilangan bulat.
+int N: jumlah elemen dalam array.
+Batasan:
+1 ≤ N ≤ 10^5
+-10^9 ≤ Elemen array ≤ 10^9
+Return Fungsi:
+Tidak ada nilai pengembalian. Fungsi harus mencetak tiga elemen terbesar dalam array yang dipisahkan dengan spasi. Jika ukuran array kurang dari 3, cetak "Input tidak sesuai, ukuran array kurang dari 3".
+Contoh:
+Diberikan arr = [6, 8, 1, 9, 2, 1, 10] Output: 10 9 8
+Diberikan arr = [6, 8, 1, 9, 2, 1, 10, 10] Output: 10 10 9
+Diberikan arr = [6] Output: Input tidak sesuai, ukuran array kurang dari 3
+Prototipe Fungsi: void topThreeElements(int arr[], int N);
+
+void topThreeElements(int arr[],int n){
+    if(n<3){
+        cout << "Input tidak sesuai, ukuran array kurang dari 3";
+    }
+    else{
+        for(int i =0;i<n;i++){
+            for(int k = 0;k<n;k++){
+                if(arr[i]>=arr[k]){
+                    swap(arr[i], arr[k]);
+                }
+            }
+        }
+        for(int i = 0;i<3;i++){
+            cout<<arr[i]<< " ";
+        }
+    }
+}
+
+
+
+
+
+
+7.Buat sebuah fungsi dengan nama Fungsi yang mengembalikan type data integer. Fungsi ini akan menegmbalikan nilai dengan cara memanggil fungsi yang ada di dalam parameternya. Fungsi ini memiliki 2 parameter, yaitu  
+Pointer ke fungsi yang mengembalikan type data integer dan memiliki 1 parameter integer.
+int a
+Petunjuk:
+Materi untuk soal ini ada di buku Programming With C++ bab POINTER TO FUNCTIONS AS PARAMETER OF ANOTHER FUNCTION
+
+int Fungsi(int (*f1)(int a),int a){
+    return f1(a);
+}
+
+
+
+
+
+8. Buat fungsi dengan nama update yang memiliki 2 parameter pointer integer a dan b. Fungsi ini memodifikasi nilai a dan b, sehingga:.
+a' = a+b
+b' =|a-b|
+void update(int *a,int *b){
+   int A1, A2;
+   A1 = *a + *b;
+   A2 = abs(*a -*b);
+   *a =A1;
+   *b =A2;
+}
+
+
+
+
+
+9. Buat tipe data bentukan dengan nama Point, yang memiliki data member x dan y yang merupakan representasi titik di bidang datar. Tipe data ini juga memiliki konstruktor: 
+Konstruktor default, akan memberikan nilai x=0 dan y=0;
+Konstruktor dengan 2 parameter, akan memberikan nilai x dan y berdasarkan parameternya
+Konstruktor yang menduplikasi objek Point lainnya.
+Selain konstruktor juga memiliki member fungsi print, fungsi ini akan mencetak nilai x dan y yang dipisahkan dengan spasi
+class Point{
+    private:
+    int x,y;
+    public:
+    Point(){
+        x = 0;
+        y = 0;
+    }
+    Point(int i, int j){
+        x = i;
+        y = j;
+    }
+    Point(Point &PointNama){
+        x = PointNama.x;
+        y = PointNama.y;
+    }
+    void print(){
+        cout << x << " "<<y<<endl;
+    }
+};
+
+
+
+
+
+10.(Lanjutkan class Point pada soal sebelumnya) 
+Buat tipe data bentukan dengan nama Point, yang memiliki data member x dan y yang merupakan representasi titik di bidang datar. Tipe data ini juga memiliki konstruktor: 
+Konstruktor default, akan memberikan nilai x=0 dan y=0;
+Konstruktor dengan 2 parameter, akan memberikan nilai x dan y berdasarkan parameternya
+Konstruktor yang menduplikasi objek Point lainnya.
+Selain konstruktor juga memiliki member fungsi:
+print, fungsi ini akan mencetak nilai x dan y yang dipisahkan dengan spasi
+distance, fungsi ini memiliki 1 parameter yaitu objek Point. Fungsi ini akan mengembalikan nilai jarak antar Point. (Petunjuk: perhatikan, amati dan pelajari konstruktor duplikasi objek untuk membuat fungsi ini)
+
+class Point{
+   private:
+   double x,y;
+   public:
+   Point(){
+       x=0;
+       y=0;
+   }
+   Point(double i, double j){
+       x = i;
+       y = j;
+   }
+   Point(Point &PointNama){
+       x = PointNama.x;
+       y = PointNama.y;
+   }
+   void print(){
+       cout << x << " "<<y <<endl;
+   }
+   double distance(Point &PointNama){
+       double i = abs(x -PointNama.x);
+       double j = abs(y - PointNama.y);
+       return pow((i*i+j*j),0.5);
+   }
+};
+
+
+
+
+
+
+11.(Lanjutkan class Point pada soal sebelumnya) 
+1. Buat tipe data bentukan dengan nama Point, yang memiliki data member x dan y yang merupakan representasi titik di bidang datar. Tipe data ini juga memiliki konstruktor: 
+Konstruktor default, akan memberikan nilai x=0 dan y=0;
+Konstruktor dengan 2 parameter, akan memberikan nilai x dan y berdasarkan parameternya
+Konstruktor yang menduplikasi objek Point lainnya.
+Selain konstruktor juga memiliki member fungsi:
+print, fungsi ini akan mencetak nilai x dan y yang dipisahkan dengan spasi
+distance, fungsi ini memiliki 1 parameter yaitu objek Point. Fungsi ini akan mengembalikan nilai jarak antar Point. (Petunjuk: perhatikan, amati dan pelajari konstruktor duplikasi objek untuk membuat fungsi ini)
+2. Buat 4 fungsi diluar class/struct (bukan member dari ADT Point), yaitu fungsi dengan 2 parameter dimana parameter pertama adalah Pointer Point (untuk mereferensi ke array Point) dan parameter kedua adalah N yang merupakan panjang array, fungsi-fungsi tsb adalah:
+left, fungsi ini akan mengembalikan titik paling  kiri jika titik-titik (x, y) digambarkan pada bidang kartesius.
+right, fungsi ini akan mengembalikan titik paling kanan jika titik-titik (x, y) digambarkan pada bidang kartesius.
+bottom, fungsi ini akan mengembalikan titik paling bawah jika titik-titik (x, y) digambarkan pada bidang kartesius.
+top, fungsi ini akan mengembalikan titik paling atas jika titik-titik (x, y) digambarkan pada bidang kartesius.
+Jika terdapa lebih dari 1 titik yang menempati posisi yang sama gunakan titik yang pertama.
+
+class Point{
+    private:
+    double x, y;
+    public:
+    Point(){
+        x = 0;
+        y = 0;
+    }
+    Point(int a, int b){
+        x = a;
+        y = b;
+    }
+    Point(Point &PointA){
+        x = PointA.x;
+        y = PointA.y;
+    }
+    void print(){
+        cout<<x<<" "<<y<<endl;
+    }
+    double distance(Point &PointA){
+        double a = abs(x - PointA.x);
+        double b = abs(y - PointA.y);
+        return pow((a*a + b*b), 0.5);
+    }
+    double getX(){
+        return x;
+    }
+    double getY(){
+        return y;
+    }
+};
+
+Point left(Point *point, int N){
+    Point left2 = point[0];
+    for(int i = 1; i < N; i++){
+        if(point[i].getX() < left2.getX()) left2 = point[i];
+    }
+    return left2;
+}
+Point right(Point *point, int N){
+    Point right2 = point[0];
+    for(int i = 1; i<N; i++){
+        if(point[i].getX() > right2.getX()) right2 = point[i];
+    }return right2;
+}
+Point bottom(Point *point, int N){
+    Point bottom2 = point[0];
+    for(int i =1; i<N; i++){
+        if(point[i].getY() < bottom2.getY()) bottom2 = point[i];
+    }return bottom2;
+}
+Point top(Point *point, int N){
+    Point top2 = point[0];
+    for(int i = 1; i < N; i++){
+        if(point[i].getY()> top2.getY())top2 = point[i];
+    }return top2;
+}
+
+
+
+
+
+12. (Lanjutkan class Point pada soal sebelumnya) 
+Buat tipe data bentukan dengan nama Point3D, yang memiliki data member x, y  dan z yang merupakan representasi titik di bangun ruang. Tipe data ini juga memiliki konstruktor: 
+Konstruktor default, akan memberikan nilai x=0, y=0 dan z=0;
+Konstruktor dengan 3 parameter, akan memberikan nilai x, y dan z berdasarkan parameternya
+Konstruktor yang menduplikasi objek Point lainnya.
+Selain konstruktor juga memiliki member fungsi:
+print, fungsi ini akan mencetak nilai x, y dan z yang dipisahkan dengan spasi
+distance, fungsi ini memiliki 1 parameter yaitu objek Point3D. Fungsi ini akan mengembalikan nilai jarak antar titik. (Petunjuk: perhatikan, amati dan pelajari konstruktor duplikasi objek untuk membuat fungsi ini)
+
+class Point3D{
+  private :
+  int x,y,z;
+  public :
+  Point3D(){x=0; y=0;z=o;}
+  Point3D (int x, int y, intz) : x(x),y(y),z(z){
+  Point3D(Point3D &P){x =P.x;y=P.y;z=P.z;}
+  void print(){cout <<x<<" "<<y<< " " <<z <<endl;}
+  double distance(Point3D &P){
+    double a = abs(x-P.x);
+    double b = abs(y-P.y);
+    double c = abs(z-P.z);
+    return pow((a*a+b*b+c*c),0.5);
+  }
+};
+
+
+13.(Lanjutkan class Point3D pada soal sebelumnya) 
+
+Buat tipe data bentukan dengan nama Point3D, yang memiliki data member x, y  dan z yang merupakan representasi titik di bangun ruang. Tipe data ini juga memiliki konstruktor: 
+
+Konstruktor default, akan memberikan nilai x=0, y=0 dan z=0;
+Konstruktor dengan 3 parameter, akan memberikan nilai x, y dan z berdasarkan parameternya
+Konstruktor yang menduplikasi objek Point lainnya.
+
+Selain konstruktor juga memiliki member fungsi:
+print, fungsi ini akan mencetak nilai x, y dan z yang dipisahkan dengan spasi
+distance, fungsi ini memiliki 1 parameter yaitu objek Point3D. Fungsi ini akan mengembalikan nilai jarak antar titik. (Petunjuk: perhatikan, amati dan pelajari konstruktor duplikasi objek untuk membuat fungsi ini)
+dotProduct, Anggap saja titik-titik pada elemen data merupakan  sebuah vektor. fungsi ini memiliki 1 parameter yaitu objek Point3D. Fungsi ini akan mengembalikan nilai perkalian titik (dot product) diantara 2 vektor.
+class Point3D{
+  private :
+  int x,y,z;
+  public :
+  Point3D(){x=0; y=0;z=o;}
+  Point3D (int x, int y, intz) : x(x),y(y),z(z){
+  Point3D(Point3D &P){x =P.x;y=P.y;z=P.z;}
+  void print(){cout <<x<<" "<<y<< " " <<z <<endl;}
+  double distance(Point3D &P){
+    double a = abs(x-P.x);
+    double b = abs(y-P.y);
+    double c = abs(z-P.z);
+    return pow((a*a+b*b+c*c),0.5);
+  }
+  int dotProduct(Point3D &P){return x * P.x + y * P.y +z *P.z;}
+};
+
+
+
+
+
+14.(Lanjutkan class Point3D pada soal sebelumnya) 
+
+Buat tipe data bentukan dengan nama Point3D, yang memiliki data member x, y  dan z yang merupakan representasi titik di bangun ruang. Tipe data ini juga memiliki konstruktor: 
+
+Konstruktor default, akan memberikan nilai x=0, y=0 dan z=0;
+Konstruktor dengan 3 parameter, akan memberikan nilai x, y dan z berdasarkan parameternya
+Konstruktor yang menduplikasi objek Point lainnya.
+
+Selain konstruktor juga memiliki member fungsi:
+print, fungsi ini akan mencetak nilai x, y dan z yang dipisahkan dengan spasi
+distance, fungsi ini memiliki 1 parameter yaitu objek Point3D. Fungsi ini akan mengembalikan nilai jarak antar titik. (Petunjuk: perhatikan, amati dan pelajari konstruktor duplikasi objek untuk membuat fungsi ini)
+angle, Anggap saja titik-titik pada elemen data merupakan  sebuah vektor. fungsi ini memiliki 1 parameter yaitu objek Point3D. Fungsi ini akan mengembalikan nilai sudut diantara 2 vekor (sudut dalam derajat).
+
