@@ -1,0 +1,126 @@
+//materi 
+#include <iostream>
+#include <list>
+#include <vector>
+using namespace std;
+
+int main()
+{
+    list<int> angka={2,4,5,7,8};
+    cout<<angka.front()<<endl;
+    
+    cout<< angka.back()<<endl;
+    
+    list<int>::iterator it;
+    for (it=angka.begin();it!=angka.end();it++){
+        cout<<*it<< " ";
+    }
+    cout<<endl;
+    
+    angka.push_front(1);
+    cout<<angka.front()<<endl;
+    
+    angka.push_back(1);
+    cout<<angka.back()<<endl;
+    
+    angka.pop_front();
+    cout<<angka.front();
+    
+    angka.pop_back();
+    cout<<angka.back();
+    
+    cout<<angka.size()<<endl;
+    
+    if(angka.empty()){
+        cout<<"Kosong"<<endl;
+    } else{
+        cout<<"Tidak Kosong"<<endl;
+    }
+    
+    angka.assign(3,0);
+    for (it=angka.begin();it!=angka.end();it++){
+        cout<<*it<< " ";
+    }
+    cout<<endl;
+    
+    
+    
+    
+
+    return 0;
+}
+
+
+
+
+
+
+
+//tugas
+//Dea Delvinata Riyan
+//2317051027_D
+#include <iostream>
+#include <vector>
+using namespace std;
+
+class daftar{
+    private:
+    vector<string> barang;
+    public:
+    daftar(){
+        barang = {"beras","minyak","sabun"};
+    }
+    daftar(vector<string>barang){
+        this->barang = barang;
+    }
+
+    void setBarang(vector<string>barang){
+        this->barang = barang;
+    }
+    vector<string>getBarang(){
+        return barang;
+    }
+    void hapusAkhir(){
+        barang.pop_back();
+    }
+    void tambahBarang(int urutan, string nama){
+        barang.insert(barang.begin()+urutan-1, nama);
+    }
+    void hapusBarang(int urutan){
+        barang.erase(barang.begin()+urutan-1);
+    }
+    void daftarBaru(string* nama, int jumlah){
+        barang.assign(nama, nama+jumlah);
+    }
+    void hapusDaftar(){
+        if(barang.empty()!=1){
+            barang.clear();
+        }else{
+            cout << "Daftar sudah kosong\n";
+        }
+    }
+    void cetakDaftar(){
+        cout << "daftar barang Ak\n";
+        for(int i=0;i<barang.size();i++){
+            cout <<i+1 << ". "<<barang[i]<<"\n";
+        }
+    }
+    void tambahBarang(string nama){
+        barang.push_back(nama);
+    }
+};
+int main(){
+    daftar d;
+    daftar d2({"hp","dompet"});
+    d.setBarang({"baju","celana","kaos kaki"});
+    d.tambahBarang(3,"hp");
+    d.hapusBarang(2);
+    string nama[]={"hp","dompet","earphone"};
+    int jumlah = sizeof(nama)/sizeof(nama[0]);
+    d.daftarBaru(nama, jumlah);
+    d.hapusAkhir();
+    d.tambahBarang("uang");
+    d.hapusDaftar();
+    d.cetakDaftar();
+    return 0;
+}
